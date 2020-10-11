@@ -12,6 +12,9 @@ class App extends Component{
 
     handleOnClick=()=>{
         console.log('Button was clicked');
+        const{addTodo}=this.props;
+        const {input} =this.state;
+        addTodo(input)
     };
 
     handleOnChange=(event)=>{
@@ -21,11 +24,11 @@ class App extends Component{
     }
     render(){
         const {input}=this.state;
-        const {listTodo}=this.props;
-        console.log(listTodo);
+        const {todoList}=this.props;
+        console.log(todoList);
         return (
             <div>
-                <List todoList={[]}/>
+                <List /*todoList={[todoList]*//>
                 <Input onChange={event=>this.handleOnChange(event)} value={input}/>
                 <Button onClick={()=>this.handleOnClick()}> Adicionar </Button>               
             </div>
@@ -33,7 +36,8 @@ class App extends Component{
     }
 }
 const mapStateToProps=state=>({
-    listTodo: state.todo
+    //listTodo: state.todo
+    todoList: state.todo
 });
 //export default App;
 export default connect(mapStateToProps, {addTodo})(App);
